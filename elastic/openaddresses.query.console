@@ -1,0 +1,45 @@
+
+# Get where fclass = building
+GET openaddresses-01/_search
+{
+  "query": {
+    "term" : { "fclass" : "building" } 
+  }
+}
+
+# Get where area_sm between 2000 and 3000
+GET openaddresses-01/_search
+{
+    "query": {
+        "range" : {
+            "area_sm" : {
+                "gte" : 2000,
+                "lte" : 3000,
+                "boost" : 2.0
+            }
+        }
+    }
+}
+
+# Get where shape is within envelope
+GET openaddresses-01/_search
+{
+    "query":{
+        "bool": {
+            "must": {
+                "match_all": {}
+            },
+            "filter": {
+                "geo_shape": {
+                    "shape": {
+                        "shape": {
+                            "type": "envelope",
+                            "coordinates" : [[7.0, 46.0], [8.2, 47.9]]
+                        },
+                        "relation": "within"
+                    }
+                }
+            }
+        }
+    }
+}

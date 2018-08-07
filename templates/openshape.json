@@ -1,0 +1,74 @@
+{
+  "template": "openshape-*",
+  "settings": {
+    "number_of_shards": 1,
+    "number_of_replicas": 0
+  },
+  "mappings": {
+    "doc": {
+      "dynamic": true,
+      "_all": {
+        "enabled": true
+      },
+      "properties": {
+        "area_sf": {
+          "type": "float"
+        },
+        "area_sm": {
+          "type": "float"
+        },
+        "code": {
+          "type": "long"
+        },
+        "fclass": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "name": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            },
+            "suggest": {
+              "type": "completion",
+              "analyzer": "simple",
+              "preserve_separators": true,
+              "preserve_position_increments": true,
+              "max_input_length": 30
+            }
+          }
+        },
+        "osm_id": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "shape": {
+          "type": "geo_shape",
+          "tree": "quadtree",
+          "precision": "1m"
+        },
+        "type": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        }
+      }
+    }
+  }
+}

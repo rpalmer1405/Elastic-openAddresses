@@ -1,0 +1,35 @@
+#username:addresses_admin
+#password:addresses
+
+# See the index and it's mappings
+GET openaddresses-01
+
+# get all results
+GET openaddresses-01/_search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+# See the index and it's mappings
+GET openshape-02
+
+# get all results
+GET openshape-02/_search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+# See the index and it's mappings
+GET opencountrywide-01
+
+# get all results
+GET opencountrywide-01/_search
+{
+  "query": {
+    "match_all": {}
+  }
+}
